@@ -24,9 +24,9 @@ pascual-route-genius-ai/
 │   │   ├───preprocessing.ipynb
 │   │   ├───eda_analysis.ipynb
 │   │   ├───preliminary_xgboost.ipynb
-│   │   ├───model_cata.ipynb
-│   │   ├───model_nacho.ipynb
-│   │   └───model_sebas.ipynb
+│   │   ├───model_pyomo.ipynb
+│   │   ├───model_kmeans.ipynb
+│   │   └───model_final_strategy.ipynb
 │   └───environment.yml
 ├───src/
 │   ├───App.tsx
