@@ -5,6 +5,27 @@ This repository contains the final project for the IE Capstone project, which co
 1.  **An optimization model** developed to analyze and improve the efficiency of promoter visits to clients.
 2.  **A web application** that provides an interface to interact with the model's outputs and recommendations.
 
+## Table of Contents
+
+*   [Project Overview](#project-overview)
+*   [Project Structure](#project-structure)
+*   [1. Optimization Model](#1-optimization-model)
+    *   [Notebooks](#notebooks)
+    *   [Getting Started with the Model](#getting-started-with-the-model)
+        *   [Prerequisites](#prerequisites)
+        *   [Installation](#installation)
+        *   [Running the Notebooks](#running-the-notebooks)
+*   [2. Web Application](#2-web-application)
+    *   [Getting Started with the Web App](#getting-started-with-the-web-app)
+    *   [Technologies Used](#technologies-used)
+    *   [Deployment](#deployment)
+*   [Data Setup](#data-setup)
+*   [Data](#data)
+*   [Key Findings from the Model](#key-findings-from-the-model)
+*   [Final Strategy and Impact](#final-strategy-and-impact)
+*   [Contributing](#contributing)
+*   [License](#license)
+
 ## Project Overview
 
 The core objective of this project is to classify clients into different segments based on their value (ticket size) and the efficiency of promoter interactions. The project identifies "High-Ticket Inefficient" and "Low-Ticket Inefficient" clients as primary targets for optimization. By analyzing the patterns of efficient clients, the project aims to provide actionable recommendations for the number of promoter visits for inefficient clients, ultimately optimizing resource allocation and improving profitability.
@@ -52,7 +73,7 @@ The project is structured across several Jupyter notebooks located in the `pascu
 *   **`preliminary_xgboost.ipynb`**: Develops a predictive model to determine the optimal number of promoter visits for inefficient clients.
 *   **`model_pyomo.ipynb`**: Focuses on an optimization model to determine the optimal number of visits, considering cost and efficiency targets.
 *   **`model_kmeans.ipynb`**: Provides a descriptive and diagnostic analysis of client segments and their characteristics.
-*   **`model_final_strategy.ipynb`**: Explores the characteristics of inefficient clients and uses clustering to identify distinct subgroups within the inefficient population.
+*   **`model_final_strategy.ipynb`**: Develops and validates the final strategy for optimizing promoter visit frequencies, incorporating engineered optimization variables, target visit-order gaps, and rule-based visit reductions. It also leverages K-Means clustering to identify homogeneous subgroups within inefficient client segments for tailored recommendations.
 
 
 ### Getting Started with the Model
@@ -157,7 +178,28 @@ Before running any of the notebooks, you must set up the raw data directory:
 *   **Optimization Models:** Both a predictive model (XGBoost) and a prescriptive optimization model (Pyomo with CBC solver) are used to recommend optimal visit frequencies for inefficient clients.
 *   **Potential Savings:** The optimization models project significant potential cost savings by adjusting promoter visit schedules.
 
-## Contributing
+## Final Strategy and Impact
+
+The final strategy for optimizing promoter visit frequencies focuses on developing and validating a robust approach to simulate cost-efficient corrective actions within the inefficient client segments. This involves:
+
+*   **Engineered Optimization Variables:** Creating variables to estimate the financial and operational impact of reducing excess promoter visits, tailored to each inefficient quadrant (High-Ticket Inefficient and Low-Ticket Inefficient) and adjusted by behavioral cluster.
+*   **Target Visit-Order Gap:** Assigning a target visit-order gap to each cluster, reflecting the acceptable inefficiency and room for optimization.
+*   **Rule-Based Visit Reduction:** Converting the gap reduction into an integer number of visits to remove per month, with a soft rounding approach.
+*   **Profit Margin Segmentation:** Further enriching segmentation by computing a profit margin metric for each client (ratio of total profit to total cost) to distinguish low-margin and high-margin groups.
+*   **K-Means Clustering for Subgroups:** Applying K-Means clustering to identify more homogeneous subgroups within the inefficient quadrants, allowing for tailored recommendations.
+
+This approach balances cost reduction goals with Pascual’s commitment to service quality, ensuring recommendations are both data-driven and operationally viable.
+
+**Key Outcomes:**
+
+*   **Significant Potential Savings:** The optimization models project substantial potential cost savings by adjusting promoter visit schedules.
+*   **Targeted Intervention:** A Pareto-driven approach is recommended, focusing on the top 25–35% of clients responsible for the majority of excess cost. This allows for substantial efficiency gains with minimal operational disruption.
+*   **Client Segmentation:** Clients are segmented into four categories based on their median ticket and efficiency: High-Ticket Efficient, Low-Ticket Efficient, High-Ticket Inefficient, and Low-Ticket Inefficient.
+*   **Inefficiency Drivers:** Inefficiency is primarily behavioral (too many visits for the number of orders) and not directly driven by the client's profit size.
+*   **LLM-based Decision Support:** The analysis is designed to integrate seamlessly with a dedicated Large Language Model (LLM) based decision support assistant, providing explainable, client-level recommendations to commercial teams.
+
+This structured approach ensures that operational changes are proportionate and justified by client-level data, leading to a more efficient and profitable sales network.
+
 
 Please feel free to submit pull requests or open issues to improve the project.
 
