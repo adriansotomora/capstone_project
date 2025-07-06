@@ -79,7 +79,7 @@ The project is structured across several Jupyter notebooks located in the `pascu
     conda activate capstone-project
     ```
 
-4.  **Install a solver for the optimization model (optional, for `model_cata.ipynb`):**
+4.  **Install a solver for the optimization model (optional, for `model_pyomo.ipynb`):**
     The optimization notebook uses the CBC solver.
     ```bash
     # On macOS with Homebrew
