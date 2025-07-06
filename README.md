@@ -1,44 +1,86 @@
-# Capstone Project: Optimizing Promoter Efficiency
+# Capstone Project: Pascual Route Genius AI
 
-This project analyzes client data to identify and address inefficiencies in promoter visits, aiming to optimize resource allocation and improve profitability.
+This repository contains the final project for the IE Capstone project, which consists of two main components:
+
+1.  **An optimization model** developed to analyze and improve the efficiency of promoter visits to clients.
+2.  **A web application** that provides an interface to interact with the model's outputs and recommendations.
 
 ## Project Overview
 
-The core objective is to classify clients into different segments based on their value (ticket size) and the efficiency of promoter interactions. The project identifies "High-Ticket Inefficient" and "Low-Ticket Inefficient" clients as primary targets for optimization. By analyzing the patterns of efficient clients, the project aims to provide actionable recommendations for the number of promoter visits for inefficient clients.
+The core objective of this project is to classify clients into different segments based on their value (ticket size) and the efficiency of promoter interactions. The project identifies "High-Ticket Inefficient" and "Low-Ticket Inefficient" clients as primary targets for optimization. By analyzing the patterns of efficient clients, the project aims to provide actionable recommendations for the number of promoter visits for inefficient clients, ultimately optimizing resource allocation and improving profitability.
 
-## Notebooks
+---
 
-The project is structured across several Jupyter notebooks:
+## Project Structure
 
-*   **`scripts/preprocessing.ipynb`**: This notebook handles the initial data loading, cleaning, and feature engineering. It processes the raw order data, calculates key metrics like efficiency and cost, and prepares the datasets for modeling.
-*   **`scripts/model_adrian.ipynb`**: This notebook develops a predictive model to determine the optimal number of promoter visits for inefficient clients. It uses a regression model trained on efficient clients to predict the ideal visit frequency for inefficient ones.
-*   **`scripts/model_cata.ipynb`**: This notebook focuses on an optimization model to determine the optimal number of visits for inefficient clients, considering cost and efficiency targets. It uses linear programming to find the best visit allocation.
-*   **`scripts/model_sebas.ipynb`**: This notebook provides a descriptive and diagnostic analysis of client segments. It explores the characteristics of inefficient clients and uses clustering to identify distinct subgroups within the inefficient population.
-*   **`scripts/nacho_clustered_model.ipynb`**: This notebook appears to be related to clustering models, likely as part of the work done in `model_sebas.ipynb`.
+```
+pascual-route-genius-ai/
+├───pascual_optimization_model/
+│   ├───data/
+│   │   ├───raw/
+│   │   │   └───Orders_Master_Data(in).xlsx  <-- Place raw data file here
+│   │   └───processed/
+│   ├───scripts/
+│   │   ├───preprocessing.ipynb
+│   │   ├───eda_analysis.ipynb
+│   │   ├───preliminary_xgboost.ipynb
+│   │   ├───model_cata.ipynb
+│   │   ├───model_nacho.ipynb
+│   │   └───model_sebas.ipynb
+│   └───environment.yml
+├───src/
+│   ├───App.tsx
+│   ├───server.ts
+│   └───components/
+├───package.json
+├───vite.config.ts
+└───README.md
+```
 
-## Getting Started
+---
 
-### Prerequisites
+## 1. Optimization Model
+
+This component analyzes client data to identify and address inefficiencies in promoter visits.
+
+### Notebooks
+
+The project is structured across several Jupyter notebooks located in the `pascual_optimization_model/scripts/` directory:
+
+*   **`preprocessing.ipynb`**: Handles the initial data loading, cleaning, and feature engineering.
+*   **`eda_analysis.ipynb`**: (Placeholder) For exploratory data analysis.
+*   **`preliminary_xgboost.ipynb`**: Develops a predictive model to determine the optimal number of promoter visits for inefficient clients.
+*   **`model_cata.ipynb`**: Focuses on an optimization model to determine the optimal number of visits, considering cost and efficiency targets.
+*   **`model_nacho.ipynb`**: Provides a descriptive and diagnostic analysis of client segments and their characteristics.
+*   **`model_sebas.ipynb`**: Explores the characteristics of inefficient clients and uses clustering to identify distinct subgroups within the inefficient population.
+
+
+### Getting Started with the Model
+
+#### Prerequisites
 
 *   Python 3.x
 *   Conda
 
-### Installation
+#### Installation
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
-    cd capstone_project
+    git clone https://github.com/Ignacioamigo/pascual-route-genius-ai.git
+    cd pascual-route-genius-ai
     ```
 
-2.  **Create and activate the Conda environment:**
+2.  **Place the raw data file** `Orders_Master_Data(in).xlsx` into the `pascual_optimization_model/data/raw/` directory. The scripts are configured to read the input file from this location.
+
+3.  **Create and activate the Conda environment:**
     ```bash
+    cd pascual_optimization_model
     conda env create -f environment.yml
     conda activate capstone-project
     ```
 
-3.  **Install a solver for the optimization model (optional, for `model_cata.ipynb`):**
-    The optimization notebook uses the CBC solver. You can install it via Homebrew on macOS or through other package managers on different systems.
+4.  **Install a solver for the optimization model (optional, for `model_cata.ipynb`):**
+    The optimization notebook uses the CBC solver.
     ```bash
     # On macOS with Homebrew
     brew install cbc
@@ -50,28 +92,67 @@ The project is structured across several Jupyter notebooks:
     ```bash
     jupyter lab
     ```
-2.  Navigate to the `scripts` directory and run the notebooks in the following order:
+2.  Navigate to the `pascual_optimization_model/scripts` directory and run the notebooks in the following order to replicate the results:
     1.  `preprocessing.ipynb`
-    2.  `model_adrian.ipynb`
-    3.  `model_cata.ipynb`
-    4.  `model_sebas.ipynb`
+    2.  `eda_analysis.ipynb` (or your equivalent EDA script)
+    3.  `preliminary_xgboost.ipynb`
+    4.  The remaining model notebooks (`model_cata`, `model_nacho`, `model_sebas`) can be run independently.
 
-## Key Findings
+---
+
+## 2. Web Application
+
+The web application, built with Lovable, provides a user-friendly interface to visualize the results of the optimization model and manage client data.
+
+### Getting Started with the Web App
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Navigate to the project directory (if you are not already there).
+cd pascual-route-genius-ai
+
+# Step 2: Install the necessary dependencies.
+npm i
+
+# Step 3: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
+
+### Technologies Used
+
+This project is built with:
+
+*   Vite
+*   TypeScript
+*   React
+*   shadcn-ui
+*   Tailwind CSS
+
+### Deployment
+
+This project can be deployed via Lovable by visiting the [Lovable Project](https://lovable.dev/projects/0623b0a5-2230-4646-8fe9-79a717ce5808) and clicking on Share -> Publish. You can also connect a custom domain through the project settings.
+
+---
+
+## Data
+
+*   **Raw Data:** The raw data file, `Orders_Master_Data(in).xlsx`, must be placed in the `pascual_optimization_model/data/raw/` directory.
+*   **Processed Data:** The `pascual_optimization_model/data/processed` directory contains the cleaned and transformed datasets generated by the `preprocessing.ipynb` notebook.
+
+## Key Findings from the Model
 
 *   **Client Segmentation:** Clients are segmented into four categories based on their median ticket and efficiency: High-Ticket Efficient, Low-Ticket Efficient, High-Ticket Inefficient, and Low-Ticket Inefficient.
 *   **Inefficiency Drivers:** The analysis suggests that inefficiency is primarily behavioral (too many visits for the number of orders) and not directly driven by the client's profit size.
 *   **Optimization Models:** Both a predictive model (XGBoost) and a prescriptive optimization model (Pyomo with CBC solver) are used to recommend optimal visit frequencies for inefficient clients.
 *   **Potential Savings:** The optimization models project significant potential cost savings by adjusting promoter visit schedules.
 
-## Data
-
-*   **Raw Data:** `data/raw/Orders_Master_Data(in).xlsx`
-*   **Processed Data:** The `data/processed` directory contains the cleaned and transformed datasets generated by the `preprocessing.ipynb` notebook.
-    *   `clients.csv`
-    *   `orders.csv`
-    *   `orders_raw.csv`
-    *   `clients_monthly.csv`
-
 ## Contributing
 
 Please feel free to submit pull requests or open issues to improve the project.
+
+## License
+
+This project is licensed under the MIT License.
