@@ -50,9 +50,9 @@ The project is structured across several Jupyter notebooks located in the `pascu
 *   **`preprocessing.ipynb`**: Handles the initial data loading, cleaning, and feature engineering.
 *   **`eda_analysis.ipynb`**: (Placeholder) For exploratory data analysis.
 *   **`preliminary_xgboost.ipynb`**: Develops a predictive model to determine the optimal number of promoter visits for inefficient clients.
-*   **`model_cata.ipynb`**: Focuses on an optimization model to determine the optimal number of visits, considering cost and efficiency targets.
-*   **`model_nacho.ipynb`**: Provides a descriptive and diagnostic analysis of client segments and their characteristics.
-*   **`model_sebas.ipynb`**: Explores the characteristics of inefficient clients and uses clustering to identify distinct subgroups within the inefficient population.
+*   **`model_pyomo.ipynb`**: Focuses on an optimization model to determine the optimal number of visits, considering cost and efficiency targets.
+*   **`model_kmeans.ipynb`**: Provides a descriptive and diagnostic analysis of client segments and their characteristics.
+*   **`model_final_strategy.ipynb`**: Explores the characteristics of inefficient clients and uses clustering to identify distinct subgroups within the inefficient population.
 
 
 ### Getting Started with the Model
@@ -96,8 +96,9 @@ The project is structured across several Jupyter notebooks located in the `pascu
     1.  `preprocessing.ipynb`
     2.  `eda_analysis.ipynb` (or your equivalent EDA script)
     3.  `preliminary_xgboost.ipynb`
-    4.  The remaining model notebooks (`model_cata`, `model_nacho`, `model_sebas`) can be run independently.
-
+    4.  `model_kmeans.ipynb`
+    5.  `model_pyomo.ipynb`
+    6.  `model_final_strategy.ipynb`
 ---
 
 ## 2. Web Application
@@ -136,6 +137,13 @@ This project is built with:
 This project can be deployed via Lovable by visiting the [Lovable Project](https://lovable.dev/projects/0623b0a5-2230-4646-8fe9-79a717ce5808) and clicking on Share -> Publish. You can also connect a custom domain through the project settings.
 
 ---
+
+## Data Setup
+
+Before running any of the notebooks, you must set up the raw data directory:
+
+1.  Create a directory named `raw` inside the `pascual_optimization_model/data/` directory.
+2.  Place the raw data file, `Orders_Master_Data(in).xlsx`, into the `pascual_optimization_model/data/raw/` directory.
 
 ## Data
 
