@@ -41,6 +41,15 @@ pascual-route-genius-ai/
 │   │   ├───raw/
 │   │   │   └───Orders_Master_Data(in).xlsx  <-- Place raw data file here
 │   │   └───processed/
+│   │       ├───orders_raw.csv
+│   │       ├───orders.csv
+│   │       ├───clients.csv
+│   │       └───clients_monthly.csv
+│   │   └───results/
+│   │       ├───all_ineff_optimized.csv.csv
+│   │       ├───df_optimized_final.csv
+│   │       ├───hv_ineff_optimized.csv
+│   │       └───lv_ineff_optimized.csv
 │   ├───scripts/
 │   │   ├───preprocessing.ipynb
 │   │   ├───eda_analysis.ipynb
